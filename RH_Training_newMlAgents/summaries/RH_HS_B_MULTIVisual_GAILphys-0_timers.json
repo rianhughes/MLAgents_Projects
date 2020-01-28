@@ -1,0 +1,226 @@
+{
+  "name": "root",
+  "total": 284.0578566669992,
+  "count": 1,
+  "self": 26.75973538297785,
+  "children": [
+    {
+      "name": "demo_to_buffer",
+      "total": 26.651680429999942,
+      "count": 4,
+      "self": 0.024229737999121426,
+      "children": [
+        {
+          "name": "load_demonstration",
+          "total": 0.23011267700076132,
+          "count": 4,
+          "self": 0.17288662500141072,
+          "children": [
+            {
+              "name": "read_file",
+              "total": 0.0572260519993506,
+              "count": 4,
+              "self": 0.0572260519993506
+            }
+          ]
+        },
+        {
+          "name": "make_demo_buffer",
+          "total": 26.39733801500006,
+          "count": 4,
+          "self": 2.565726097091101,
+          "children": [
+            {
+              "name": "BrainInfo.from_agent_proto",
+              "total": 23.83161191790896,
+              "count": 60220,
+              "self": 3.610592367877871,
+              "children": [
+                {
+                  "name": "BrainInfo.process_pixels",
+                  "total": 20.221019550031087,
+                  "count": 60220,
+                  "self": 3.9190677229380526,
+                  "children": [
+                    {
+                      "name": "image_decompress",
+                      "total": 16.301951827093035,
+                      "count": 60220,
+                      "self": 16.301951827093035
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TrainerController.advance",
+      "total": 230.64644085402142,
+      "count": 1024,
+      "self": 8.076829934027046,
+      "children": [
+        {
+          "name": "env_step",
+          "total": 42.954868435994285,
+          "count": 1024,
+          "self": 37.46892786002172,
+          "children": [
+            {
+              "name": "SubprocessEnvManager._take_step",
+              "total": 5.469658322008399,
+              "count": 1024,
+              "self": 0.06473771701257647,
+              "children": [
+                {
+                  "name": "PPOPolicy.evaluate",
+                  "total": 5.404920604995823,
+                  "count": 2048,
+                  "self": 5.404920604995823
+                }
+              ]
+            },
+            {
+              "name": "workers",
+              "total": 0.01628225396416383,
+              "count": 1024,
+              "self": 0.0,
+              "children": [
+                {
+                  "name": "worker_root",
+                  "total": 235.3095720680003,
+                  "count": 1024,
+                  "is_parallel": true,
+                  "self": 201.91049480600032,
+                  "children": [
+                    {
+                      "name": "batched_step_result_from_proto",
+                      "total": 0.031884066999737115,
+                      "count": 2,
+                      "is_parallel": true,
+                      "self": 0.0002240490002805018,
+                      "children": [
+                        {
+                          "name": "_process_visual_observation",
+                          "total": 0.03131020000000717,
+                          "count": 2,
+                          "is_parallel": true,
+                          "self": 0.0009039249998750165,
+                          "children": [
+                            {
+                              "name": "process_pixels",
+                              "total": 0.030406275000132155,
+                              "count": 18,
+                              "is_parallel": true,
+                              "self": 0.0018696909992286237,
+                              "children": [
+                                {
+                                  "name": "image_decompress",
+                                  "total": 0.02853658400090353,
+                                  "count": 18,
+                                  "is_parallel": true,
+                                  "self": 0.02853658400090353
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "_process_vector_observation",
+                          "total": 0.00034981799944944214,
+                          "count": 2,
+                          "is_parallel": true,
+                          "self": 0.00034981799944944214
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UnityEnvironment.step",
+                      "total": 33.367193195000254,
+                      "count": 1024,
+                      "is_parallel": true,
+                      "self": 0.17614724398936232,
+                      "children": [
+                        {
+                          "name": "UnityEnvironment._generate_step_input",
+                          "total": 0.18947413401474478,
+                          "count": 1024,
+                          "is_parallel": true,
+                          "self": 0.18947413401474478
+                        },
+                        {
+                          "name": "communicator.exchange",
+                          "total": 25.446622136999395,
+                          "count": 1024,
+                          "is_parallel": true,
+                          "self": 25.446622136999395
+                        },
+                        {
+                          "name": "batched_step_result_from_proto",
+                          "total": 7.554949679996753,
+                          "count": 2048,
+                          "is_parallel": true,
+                          "self": 0.1349627579584194,
+                          "children": [
+                            {
+                              "name": "_process_visual_observation",
+                              "total": 7.160315984997396,
+                              "count": 2048,
+                              "is_parallel": true,
+                              "self": 0.5782152699730432,
+                              "children": [
+                                {
+                                  "name": "process_pixels",
+                                  "total": 6.582100715024353,
+                                  "count": 18432,
+                                  "is_parallel": true,
+                                  "self": 1.2679550299417315,
+                                  "children": [
+                                    {
+                                      "name": "image_decompress",
+                                      "total": 5.314145685082622,
+                                      "count": 18432,
+                                      "is_parallel": true,
+                                      "self": 5.314145685082622
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "_process_vector_observation",
+                              "total": 0.25967093704093713,
+                              "count": 2048,
+                              "is_parallel": true,
+                              "self": 0.25967093704093713
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "update_policy",
+          "total": 179.6147424840001,
+          "count": 8,
+          "self": 49.14979930999107,
+          "children": [
+            {
+              "name": "PPOPolicy.update",
+              "total": 130.46494317400902,
+              "count": 710,
+              "self": 130.46494317400902
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

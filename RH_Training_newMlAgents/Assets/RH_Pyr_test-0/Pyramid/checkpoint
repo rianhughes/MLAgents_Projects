@@ -1,0 +1,6 @@
+model_checkpoint_path: "model-175548.cptk"
+all_model_checkpoint_paths: "model-140000.cptk"
+all_model_checkpoint_paths: "model-150000.cptk"
+all_model_checkpoint_paths: "model-160000.cptk"
+all_model_checkpoint_paths: "model-170000.cptk"
+all_model_checkpoint_paths: "model-175548.cptk"

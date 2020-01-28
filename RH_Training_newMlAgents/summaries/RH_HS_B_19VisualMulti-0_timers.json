@@ -1,0 +1,242 @@
+{
+  "name": "root",
+  "gauges": [
+    {
+      "name": "seekervisual.mean_reward",
+      "value": -0.7867494469392113,
+      "min": -0.7867494469392113,
+      "max": -0.7867494469392113,
+      "count": 1
+    },
+    {
+      "name": "hidervisual.mean_reward",
+      "value": 0.7867494469392113,
+      "min": 0.7867494469392113,
+      "max": 0.7867494469392113,
+      "count": 1
+    }
+  ],
+  "total": 1165.5675180089997,
+  "count": 1,
+  "self": 20.883182542980194,
+  "children": [
+    {
+      "name": "demo_to_buffer",
+      "total": 28.20558816599987,
+      "count": 4,
+      "self": 0.02889506999963487,
+      "children": [
+        {
+          "name": "load_demonstration",
+          "total": 0.2666903510003067,
+          "count": 4,
+          "self": 0.20122618800087366,
+          "children": [
+            {
+              "name": "read_file",
+              "total": 0.06546416299943303,
+              "count": 4,
+              "self": 0.06546416299943303
+            }
+          ]
+        },
+        {
+          "name": "make_demo_buffer",
+          "total": 27.91000274499993,
+          "count": 4,
+          "self": 2.7968070839579013,
+          "children": [
+            {
+              "name": "BrainInfo.from_agent_proto",
+              "total": 25.113195661042027,
+              "count": 60220,
+              "self": 3.9039121660925957,
+              "children": [
+                {
+                  "name": "BrainInfo.process_pixels",
+                  "total": 21.20928349494943,
+                  "count": 60220,
+                  "self": 4.0675675839220276,
+                  "children": [
+                    {
+                      "name": "image_decompress",
+                      "total": 17.141715911027404,
+                      "count": 60220,
+                      "self": 17.141715911027404
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TrainerController.advance",
+      "total": 1116.4787473000197,
+      "count": 3783,
+      "self": 36.43891570701862,
+      "children": [
+        {
+          "name": "env_step",
+          "total": 227.69756386600056,
+          "count": 3783,
+          "self": 202.32623129101603,
+          "children": [
+            {
+              "name": "SubprocessEnvManager._take_step",
+              "total": 25.277087783001207,
+              "count": 3783,
+              "self": 0.33661418299470824,
+              "children": [
+                {
+                  "name": "PPOPolicy.evaluate",
+                  "total": 24.9404736000065,
+                  "count": 7566,
+                  "self": 24.9404736000065
+                }
+              ]
+            },
+            {
+              "name": "workers",
+              "total": 0.09424479198332847,
+              "count": 3783,
+              "self": 0.0,
+              "children": [
+                {
+                  "name": "worker_root",
+                  "total": 1126.3427518469975,
+                  "count": 3783,
+                  "is_parallel": true,
+                  "self": 948.0989119239985,
+                  "children": [
+                    {
+                      "name": "batched_step_result_from_proto",
+                      "total": 0.01793724300023314,
+                      "count": 2,
+                      "is_parallel": true,
+                      "self": 0.0003245140003400593,
+                      "children": [
+                        {
+                          "name": "_process_visual_observation",
+                          "total": 0.01712129499992443,
+                          "count": 2,
+                          "is_parallel": true,
+                          "self": 0.0013340319994767924,
+                          "children": [
+                            {
+                              "name": "process_pixels",
+                              "total": 0.015787263000447638,
+                              "count": 18,
+                              "is_parallel": true,
+                              "self": 0.0022780720003083843,
+                              "children": [
+                                {
+                                  "name": "image_decompress",
+                                  "total": 0.013509191000139253,
+                                  "count": 18,
+                                  "is_parallel": true,
+                                  "self": 0.013509191000139253
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "_process_vector_observation",
+                          "total": 0.000491433999968649,
+                          "count": 2,
+                          "is_parallel": true,
+                          "self": 0.000491433999968649
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UnityEnvironment.step",
+                      "total": 178.22590267999885,
+                      "count": 3783,
+                      "is_parallel": true,
+                      "self": 1.0070549060160374,
+                      "children": [
+                        {
+                          "name": "UnityEnvironment._generate_step_input",
+                          "total": 1.0144977080003628,
+                          "count": 3783,
+                          "is_parallel": true,
+                          "self": 1.0144977080003628
+                        },
+                        {
+                          "name": "communicator.exchange",
+                          "total": 130.48138765599333,
+                          "count": 3783,
+                          "is_parallel": true,
+                          "self": 130.48138765599333
+                        },
+                        {
+                          "name": "batched_step_result_from_proto",
+                          "total": 45.72296240998912,
+                          "count": 7566,
+                          "is_parallel": true,
+                          "self": 0.7743316370124376,
+                          "children": [
+                            {
+                              "name": "_process_visual_observation",
+                              "total": 43.46389589300179,
+                              "count": 7566,
+                              "is_parallel": true,
+                              "self": 3.174370370068573,
+                              "children": [
+                                {
+                                  "name": "process_pixels",
+                                  "total": 40.28952552293322,
+                                  "count": 68094,
+                                  "is_parallel": true,
+                                  "self": 7.181766063944451,
+                                  "children": [
+                                    {
+                                      "name": "image_decompress",
+                                      "total": 33.10775945898877,
+                                      "count": 68094,
+                                      "is_parallel": true,
+                                      "self": 33.10775945898877
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "_process_vector_observation",
+                              "total": 1.4847348799748943,
+                              "count": 7566,
+                              "is_parallel": true,
+                              "self": 1.4847348799748943
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "update_policy",
+          "total": 852.3422677270005,
+          "count": 30,
+          "self": 241.1155098090021,
+          "children": [
+            {
+              "name": "PPOPolicy.update",
+              "total": 611.2267579179984,
+              "count": 2564,
+              "self": 611.2267579179984
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

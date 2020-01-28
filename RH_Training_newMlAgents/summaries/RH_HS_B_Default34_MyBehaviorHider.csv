@@ -1,0 +1,2 @@
+Steps,Policy/Entropy,Policy/Learning Rate,Policy/Extrinsic Value Estimate,Policy/Curiosity Value Estimate,Policy/GAIL Value Estimate,Policy/Extrinsic Reward,Policy/Curiosity Reward,Policy/GAIL Reward,Environment/Cumulative Reward,Environment/Episode Length
+2000,1.4189383,0.00029940033,0.14306447,0.14749904,-0.18359677,-0.520885394886136,0.0,0.0,-0.5208853862131946,452.25

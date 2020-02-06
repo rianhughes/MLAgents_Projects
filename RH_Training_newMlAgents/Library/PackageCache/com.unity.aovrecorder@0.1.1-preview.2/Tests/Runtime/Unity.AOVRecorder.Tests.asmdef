@@ -1,0 +1,20 @@
+{
+    "name": "Unity.AOVRecorder.Tests",
+    "references": [
+        "Unity.AOVRecorder.Editor",
+        "Unity.Recorder",
+        "Unity.Recorder.Editor",
+        "Unity.Timeline"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

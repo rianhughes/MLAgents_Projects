@@ -1,0 +1,160 @@
+{
+  "name": "root",
+  "total": 15.732186175999232,
+  "count": 1,
+  "self": 8.752652306691743,
+  "children": [
+    {
+      "name": "TrainerController.advance",
+      "total": 6.979533869307488,
+      "count": 759,
+      "self": 0.8964972709072754,
+      "children": [
+        {
+          "name": "env_step",
+          "total": 6.083036598400213,
+          "count": 759,
+          "self": 4.525314678554423,
+          "children": [
+            {
+              "name": "SubprocessEnvManager._take_step",
+              "total": 1.546190902357921,
+              "count": 759,
+              "self": 0.03096037229988724,
+              "children": [
+                {
+                  "name": "PPOPolicy.evaluate",
+                  "total": 1.5152305300580338,
+                  "count": 1518,
+                  "self": 1.5152305300580338
+                }
+              ]
+            },
+            {
+              "name": "workers",
+              "total": 0.011531017487868667,
+              "count": 759,
+              "self": 0.0,
+              "children": [
+                {
+                  "name": "worker_root",
+                  "total": 14.96864941145759,
+                  "count": 759,
+                  "is_parallel": true,
+                  "self": 10.938922393601388,
+                  "children": [
+                    {
+                      "name": "batched_step_result_from_proto",
+                      "total": 0.04551116900984198,
+                      "count": 2,
+                      "is_parallel": true,
+                      "self": 0.0002069808542728424,
+                      "children": [
+                        {
+                          "name": "_process_visual_observation",
+                          "total": 0.04514669510535896,
+                          "count": 2,
+                          "is_parallel": true,
+                          "self": 7.575401104986668e-05,
+                          "children": [
+                            {
+                              "name": "process_pixels",
+                              "total": 0.04507094109430909,
+                              "count": 2,
+                              "is_parallel": true,
+                              "self": 0.0007328791543841362,
+                              "children": [
+                                {
+                                  "name": "image_decompress",
+                                  "total": 0.044338061939924955,
+                                  "count": 2,
+                                  "is_parallel": true,
+                                  "self": 0.044338061939924955
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "_process_vector_observation",
+                          "total": 0.0001574930502101779,
+                          "count": 2,
+                          "is_parallel": true,
+                          "self": 0.0001574930502101779
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UnityEnvironment.step",
+                      "total": 3.984215848846361,
+                      "count": 759,
+                      "is_parallel": true,
+                      "self": 0.0781603935174644,
+                      "children": [
+                        {
+                          "name": "UnityEnvironment._generate_step_input",
+                          "total": 0.06456765776965767,
+                          "count": 759,
+                          "is_parallel": true,
+                          "self": 0.06456765776965767
+                        },
+                        {
+                          "name": "communicator.exchange",
+                          "total": 2.8151555825024843,
+                          "count": 759,
+                          "is_parallel": true,
+                          "self": 2.8151555825024843
+                        },
+                        {
+                          "name": "batched_step_result_from_proto",
+                          "total": 1.0263322150567546,
+                          "count": 1518,
+                          "is_parallel": true,
+                          "self": 0.08039746631402522,
+                          "children": [
+                            {
+                              "name": "_process_visual_observation",
+                              "total": 0.8630378390662372,
+                              "count": 1518,
+                              "is_parallel": true,
+                              "self": 0.03984624845907092,
+                              "children": [
+                                {
+                                  "name": "process_pixels",
+                                  "total": 0.8231915906071663,
+                                  "count": 1518,
+                                  "is_parallel": true,
+                                  "self": 0.3100465020397678,
+                                  "children": [
+                                    {
+                                      "name": "image_decompress",
+                                      "total": 0.5131450885673985,
+                                      "count": 1518,
+                                      "is_parallel": true,
+                                      "self": 0.5131450885673985
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "name": "_process_vector_observation",
+                              "total": 0.08289690967649221,
+                              "count": 1518,
+                              "is_parallel": true,
+                              "self": 0.08289690967649221
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

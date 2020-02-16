@@ -1,0 +1,47 @@
+{
+    "name": "Unity.AOVRecorder.Editor",
+    "references": [
+        "Unity.Recorder.Editor",
+        "Unity.Timeline",
+        "Unity.RenderPipelines.HighDefinition.Editor",
+        "Unity.RenderPipelines.HighDefinition.Runtime",
+        "Unity.RenderPipelines.Core.Runtime",
+        "Unity.OpenImageIO"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "(5.10.9,6.0)",
+            "define": "HDRP_AVAILABLE"
+        },
+        {
+            "name": "com.unity.io.images.openimageio",
+            "expression": "",
+            "define": "OIIO_AVAILABLE"
+        },
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "(6.8,6.9.9)",
+            "define": "HDRP_AOVREQUEST_API"
+        },
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "6.6",
+            "define": "HDRP_AVAILABLE"
+        },
+        {
+            "name": "com.unity.render-pipelines.high-definition",
+            "expression": "7.0.1",
+            "define": "HDRP_AOVREQUEST_API"
+        }
+    ]
+}

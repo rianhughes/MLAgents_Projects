@@ -2,7 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - HideAndSeekAcademy
-    - HiderSeekerAgent_RH
+    - HiderSeekerAgent_RH_2
     - MLAgents.BehaviorParameters
     - MLAgents.DemonstrationRecorder
     - MLAgents.Sensor.CameraSensorComponent
@@ -58,35 +58,35 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9790}
+      Script: {instanceID: 9814}
     - Class: 114
-      Script: {instanceID: 9924}
+      Script: {instanceID: 9956}
     - Class: 114
-      Script: {instanceID: 9928}
+      Script: {instanceID: 9960}
     - Class: 114
-      Script: {instanceID: 10026}
+      Script: {instanceID: 10066}
     - Class: 114
-      Script: {instanceID: 10058}
+      Script: {instanceID: 10100}
     - Class: 114
-      Script: {instanceID: 10160}
+      Script: {instanceID: 10204}
     - Class: 114
-      Script: {instanceID: 10350}
+      Script: {instanceID: 10404}
     - Class: 114
-      Script: {instanceID: 10498}
+      Script: {instanceID: 10558}
     - Class: 114
-      Script: {instanceID: 11238}
+      Script: {instanceID: 11378}
     - Class: 114
-      Script: {instanceID: 11292}
+      Script: {instanceID: 11440}
     - Class: 114
-      Script: {instanceID: 11874}
+      Script: {instanceID: 12070}
     - Class: 114
-      Script: {instanceID: 11876}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12096}
+      Script: {instanceID: 12312}
     - Class: 114
-      Script: {instanceID: 12196}
+      Script: {instanceID: 12426}
     - Class: 114
-      Script: {instanceID: 12412}
+      Script: {instanceID: 13002}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -394,6 +394,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: 049b490cddf186d72ebadbcc1e4308c8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EveryplayControl
+  - hash:
+      serializedVersion: 2
       Hash: 49d97688ed585835fa69d7d60df639f1
     assemblyName: Assembly-CSharp.dll
     namespaceName: MLAgents.Sensor
@@ -638,6 +644,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 49101319b21043357cb80c5aba043e1d
+    assemblyName: Unity.Recorder.dll
+    namespaceName: UnityEngine.Recorder
+    className: RecorderBindings
   - hash:
       serializedVersion: 2
       Hash: 78e9466979745cbb0c3eb144aaae58ea
@@ -1036,6 +1048,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: e104748af6d30e23e851a6c295573698
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HiderSeekerAgent_RH_2
+  - hash:
+      serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -1097,4 +1115,4 @@ ScriptsOnlyBuild:
   platform: 24
   scenePathNames:
   - Assets/Scenes/HideAndSeekOne_B_Visual.unity
-  playerPath: /home/rianhughes/Desktop/Projects/2_AI/RH_Training_newMlAgents/Builds/HS_B_default19VisualMulti.x86_64
+  playerPath: /scratch/rianhughes/MLAgents_Projects/RH_Training_newMlAgents/Builds/HS_meta_TopLeft.x86_64

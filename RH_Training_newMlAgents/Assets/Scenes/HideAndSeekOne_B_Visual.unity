@@ -318,9 +318,9 @@ GameObject:
   - component: {fileID: 204121856}
   - component: {fileID: 204121855}
   - component: {fileID: 204121854}
-  - component: {fileID: 204121853}
   - component: {fileID: 204121859}
   - component: {fileID: 204121860}
+  - component: {fileID: 204121853}
   m_Layer: 0
   m_Name: Seeker19
   m_TagString: agent
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 204121851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51141cd522ddd5cca908e56757a9a39, type: 3}
+  m_Script: {fileID: 11500000, guid: 348fcc2f4879d39318a1708cd560cd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
@@ -360,6 +360,7 @@ MonoBehaviour:
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 1
+  Floor: {fileID: 513637564}
   VectorActs:
   - 0
   - 0
@@ -384,7 +385,7 @@ MonoBehaviour:
     vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: d55a90659bacf869ea75bdfe041b9ba9, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: seekerv
@@ -479,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   record: 0
-  demonstrationName: Seeker19Camera
+  demonstrationName: Seeker19Camera_Area_TL
 --- !u!114 &204121860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +497,7 @@ MonoBehaviour:
   sensorName: CameraSensor
   width: 84
   height: 84
-  grayscale: 0
+  grayscale: 1
 --- !u!1 &266920567
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +567,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355829565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.586, z: 0.91}
+  m_LocalPosition: {x: 0, y: 0.586, z: -0.2}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children:
   - {fileID: 1768524950}
@@ -619,6 +620,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 355829565}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &513637564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 81464294281273590, guid: 59cb328641d03324bbc07957877d129f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1397650656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705818978
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +877,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 81464294281273591, guid: 59cb328641d03324bbc07957877d129f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59cb328641d03324bbc07957877d129f, type: 3}
 --- !u!4 &1397650657 stripped
@@ -906,7 +918,7 @@ Transform:
   m_GameObject: {fileID: 1416884364}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -17, y: 0, z: 0}
-  m_LocalScale: {x: 1.721991, y: 2.12861, z: 8}
+  m_LocalScale: {x: 2, y: 2.12861, z: 8}
   m_Children: []
   m_Father: {fileID: 1397650657}
   m_RootOrder: 7
@@ -995,7 +1007,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527040418}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1527040420
 Camera:
   m_ObjectHideFlags: 0
@@ -1047,7 +1059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527040418}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 120, z: 0}
+  m_LocalPosition: {x: 0, y: 35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1092,7 +1104,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768524949}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1768524952
 Camera:
   m_ObjectHideFlags: 0
@@ -1175,7 +1187,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971970676}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1971970679
 Camera:
   m_ObjectHideFlags: 0
@@ -1210,7 +1222,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -1233,9 +1245,9 @@ GameObject:
   - component: {fileID: 2003549926}
   - component: {fileID: 2003549925}
   - component: {fileID: 2003549924}
-  - component: {fileID: 2003549923}
   - component: {fileID: 2003549929}
   - component: {fileID: 2003549930}
+  - component: {fileID: 2003549923}
   m_Layer: 0
   m_Name: Hider19
   m_TagString: agent
@@ -1268,7 +1280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2003549921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51141cd522ddd5cca908e56757a9a39, type: 3}
+  m_Script: {fileID: 11500000, guid: 348fcc2f4879d39318a1708cd560cd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
@@ -1276,6 +1288,7 @@ MonoBehaviour:
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 1
+  Floor: {fileID: 513637564}
   VectorActs:
   - 0
   - 0
@@ -1300,7 +1313,7 @@ MonoBehaviour:
     vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: 35f7f0fbb9f3014bd85528c726334f32, type: 3}
+  m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: hiderv
@@ -1412,7 +1425,7 @@ MonoBehaviour:
   sensorName: CameraSensor
   width: 84
   height: 84
-  grayscale: 0
+  grayscale: 1
 --- !u!1 &2035414291
 GameObject:
   m_ObjectHideFlags: 0

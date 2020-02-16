@@ -1,0 +1,14 @@
+{
+    "name": "Unity.AOVRecorder.EditorTests",
+    "references": [
+        "Unity.AOVRecorder.Editor",
+        "Unity.Recorder.Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

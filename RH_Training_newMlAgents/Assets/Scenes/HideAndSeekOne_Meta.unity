@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 204121854}
   - component: {fileID: 204121860}
   - component: {fileID: 204121853}
+  - component: {fileID: 204121859}
   m_Layer: 0
   m_Name: Seeker19
   m_TagString: agent
@@ -365,9 +366,9 @@ MonoBehaviour:
   - 0
   Seeker: 1
   Enemy: {fileID: 2003549923}
-  Brain_TR: {fileID: 5022602860645237092, guid: de2453e0b8118bd9bbc9b30a83da8266,
+  Brain_TR: {fileID: 5022602860645237092, guid: 814249fa1ee09e688999efe9bb2764a6,
     type: 3}
-  Brain_BL: {fileID: 5022602860645237092, guid: 4da55841650edebe3a7675c26d50dbff,
+  Brain_BL: {fileID: 5022602860645237092, guid: 814249fa1ee09e688999efe9bb2764a6,
     type: 3}
 --- !u!114 &204121854
 MonoBehaviour:
@@ -387,9 +388,9 @@ MonoBehaviour:
     vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: b106b7c10e713c3d2af2e7591248b49d, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: seekerv
   m_TeamID: 0
   m_useChildSensors: 1
@@ -469,6 +470,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204121851}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &204121859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204121851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  record: 1
+  demonstrationName: TestMEta
 --- !u!114 &204121860
 MonoBehaviour:
   m_ObjectHideFlags: 0

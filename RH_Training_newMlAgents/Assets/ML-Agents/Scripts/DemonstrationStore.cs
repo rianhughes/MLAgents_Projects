@@ -80,7 +80,8 @@ namespace MLAgents
         /// <summary>
         /// Writes brain parameters to file.
         /// </summary>
-        void WriteBrainParameters(string brainName, BrainParameters brainParameters)
+	public void WriteBrainParameters(string brainName, BrainParameters brainParameters)
+	//void WriteBrainParameters(string brainName, BrainParameters brainParameters)
         {
             // Writes BrainParameters to file.
             m_Writer.Seek(MetaDataBytes + 1, 0);

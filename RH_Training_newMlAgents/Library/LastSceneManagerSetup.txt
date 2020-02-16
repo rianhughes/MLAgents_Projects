@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/HideAndSeekOne_B_Visual.unity
+- path: Assets/ML-Agents/Examples/Basic/Scenes/Basic.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -91,14 +91,13 @@ public class BasicAgent : Agent
     {
         WaitTimeInference();
         string demo_name = "Test";
-
         if(BoolWriteOutput()){Debug.Log("saving demonstration");TestStoreInitalize_2(string demo_name);}
     }
 
 
     public void BoolWriteOutput(){
     bool willIWrite;
-    
+
     return willIWrite;
     }
 

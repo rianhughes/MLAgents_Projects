@@ -5,27 +5,29 @@ using MLAgents;
 using Barracuda;
 
 public class HiderSeekerAgent_RH_Meta : Agent{
-    Rigidbody rb; 
+    Rigidbody rb;
     float timeLeft = 10.0f;
-    public List<float> VectorActs = new List<float> {0,0,0}; // Actions output by NN 
-    public bool Seeker = true; // Determine whether agent is the seeker 
-    bool Seeking = false; // Whether game is in seeking mode 
-    float Speed = 10; // Current speed 
-    bool hiderLearning = true; 
+    public List<float> VectorActs = new List<float> {0,0,0}; // Actions output by NN
+    public bool Seeker = true; // Determine whether agent is the seeker
+    bool Seeking = false; // Whether game is in seeking mode
+    float Speed = 10; // Current speed
+    bool hiderLearning = true;
     bool seekerLearning = true;
     HideAndSeekAcademy m_Academy;
-    public HiderSeekerAgent_RH_Meta Enemy; // Refernce to your enemy 
+    public HiderSeekerAgent_RH_Meta Enemy; // Refernce to your enemy
     float seekerFloat;
     bool sawEnemy = false;
     float waitPeriod = 1;
     string behaviorName;
     float distanceToSeenEnemey = 0.5f;
     float NumVectObs = 34; // Number of Vector Observations
-
+    char startRoom;
     float Area_1_x 	=  -17;
     float Area_1_z 	=  8;
     float Area_length 	=  16;
     float Area_width 	=  8;
+    // Bool to state if the agents attached to this script is recording a demo
+    bool recording;
     // Depending on this value, the agent will select a different Brain
     int meta_policy_id;
     // Brain to use when agents wants to move to top-right room
@@ -36,6 +38,9 @@ public class HiderSeekerAgent_RH_Meta : Agent{
     // Start is called before the first frame update
     void Start(){
 
+        recording = GetComponent<DemonstrationRecorder>().record;
+        startRoom = roomID();
+
         behaviorName = GetComponent<BehaviorParameters>().behaviorName;
         m_Academy = FindObjectOfType<HideAndSeekAcademy>();
 
@@ -44,31 +49,35 @@ public class HiderSeekerAgent_RH_Meta : Agent{
         seekerFloat = m_Academy.FloatProperties.GetPropertyWithDefault(behaviorName+"_seeking",seekerFloat);
         if (seekerFloat == 1f) Seeker = true;
         else if (seekerFloat == 0f) Seeker = false;
-        if (Seeker) {// Seeker moves faster? 
+        if (Seeker) {// Seeker moves faster?
             Speed = 12;
         } else {
             Speed = 10;
         }
-        rb = GetComponent<Rigidbody>(); 
+        rb = GetComponent<Rigidbody>();
 	// Choose a Brain for the agent
-        meta_policy_id = Random.Range(0, 1);
-            ConfigureAgent(meta_policy_id);
+        //meta_policy_id = Random.Range(0, 1);
+        //    MetaPolicy_UpdateBrain(meta_policy_id);
     }
+
+
+
 
     public override void CollectObservations() {
 
-        if (!Seeking&& GetStepCount()<waitPeriod) { 
+        if (!Seeking&& GetStepCount()<waitPeriod) {
             AddVectorObs((waitPeriod - GetStepCount()) / waitPeriod);
         } else {
-            AddVectorObs(0); 
+            AddVectorObs(0);
         }
+
+        AddVectorObs((transform.eulerAngles.y > 180 ? transform.eulerAngles.y - 360f : transform.eulerAngles.y)/180f);
         AddVectorObs(rb.velocity.x / 10f); // Transform variables -- CAN REMOVE THESE [Requires Retraining]
         AddVectorObs(rb.velocity.z / 10f); // Transform variables -- CAN REMOVE THESE [Requires Retraining]
-        AddVectorObs((transform.eulerAngles.y > 180 ? transform.eulerAngles.y - 360f : transform.eulerAngles.y)/180f);
         // AddVectorObs(transform.localPosition.x / 50f);
         // AddVectorObs(transform.localPosition.z / 50f);
 
-        for (int i = 0; i<5; i++) { // Ray cast for either wall or other agent 
+        for (int i = 0; i<5; i++) { // Ray cast for either wall or other agent
             float Wall = 0;
             float HiderOrSeeker = 0;
             float Distance = 1f;
@@ -102,13 +111,16 @@ public class HiderSeekerAgent_RH_Meta : Agent{
                         PolarToCartesian(142, 70 + i * 10)), Color.black, 0.01f, true);
                 }
             }
-            AddVectorObs(Wall);  // If wall found 
-            AddVectorObs(HiderOrSeeker); // If hider or seeker found 
+            AddVectorObs(Wall);  // If wall found
+            AddVectorObs(HiderOrSeeker); // If hider or seeker found
             AddVectorObs(Distance); // Distance to object
         }
     }
 
-    public override void AgentReset() { // End of episode 
+
+
+
+    public override void AgentReset() { // End of episode
         sawEnemy = false;
         seekerFloat = m_Academy.FloatProperties.GetPropertyWithDefault(behaviorName+"_seeking",seekerFloat);
         print(seekerFloat);
@@ -132,15 +144,17 @@ public class HiderSeekerAgent_RH_Meta : Agent{
             }
     }
 
+
+
     public override void AgentAction(float[] vectorAction) {
-        if (Seeking) { // In seeking mode 
-            if (Seeker && seekerLearning) { 
-                AddReward(-0.002f); // Negative survival 
+        if (Seeking) { // In seeking mode
+            if (Seeker && seekerLearning) {
+                AddReward(-0.002f); // Negative survival
             } else if (hiderLearning) {
-                AddReward(0.002f); // Positive survival 
+                AddReward(0.002f); // Positive survival
             }
         } else {
-            if (GetStepCount() >= waitPeriod) {   // Wait until seeking mode 
+            if (GetStepCount() >= waitPeriod) {   // Wait until seeking mode
                 Seeking = true;
             }
         }
@@ -159,56 +173,49 @@ public class HiderSeekerAgent_RH_Meta : Agent{
                 Enemy.Done();
             }
         }
-        
-        if (GetStepCount()>750) { // Stop game after 1500 steps 
+
+        if (GetStepCount()>750) { // Stop game after 1500 steps
             if (Seeker && seekerLearning) AddReward(-1f);
             else if (hiderLearning) AddReward(1f);
-            Done();
-	}
+            Done();}
 
-	// Choose a Brain for the agent
-	if (timeLeft<-10){
-        ConfigureAgent(0);
-	timeLeft=10f;
-	}
-	else if (timeLeft<0) {
-        ConfigureAgent(Random.Range(0, 2));
-	}
+	// Meta-Policy
+	 //if (timeLeft<-10){
+    //   MetaPolicy_UpdateBrain(0);
+	  //     timeLeft=10f;
+	 // }
+  //  else if (timeLeft<0) {
+//        MetaPolicy_UpdateBrain(Random.Range(0, 2));
+//	  }
 
-    }
 
-    /// NB: Currently both agents use the same set of Brains.
-    /// If 0 : Choose policy top-right
-    /// If 1 : Choose policy bottom-left
-    void ConfigureAgent(int config)
-    {	Debug.Log(timeLeft);
-	Debug.Log(config);
-        if (config == 0)
-        {
-            GiveModel("Brain_TR", Brain_TR);
-	    //Debug.Log("Choose TR" + behaviorName + config);
-        }
-        else if (config == 1)
-        {
-            GiveModel("Brain_BL", Brain_BL);
-	    //Debug.Log("Choose BL" + behaviorName + config);
-        }
-        else
-        {
-	Debug.Log("Something's wrong with brain selection..");
-        }
-    }
+}
+
+
+
 
     private void FixedUpdate() {
+
+
+      // To write current demonstration to a file given predefined condition,
+      // eg.g to write when the 'demo_agent' moves from room A to room B
+      Debug.Log("Writing.0..");
+      if(recording && Time.fixedTime%4==0){
+        Debug.Log("Writing.1..");
+        //if(inNewRoom(startRoom)){
+        if(true){
+          char crntRoom = roomID();
+          //writeIfNewRoom(startRoom,crntRoom);
+          Debug.Log("Writing...");
+          writeIfNewRoom(startRoom,'B');
+          startRoom='C';
+        }
+      }
+
      timeLeft -= Time.deltaTime;
-
-        if (Seeker && !Seeking) // Do nothing when not seeking as the seeker 
+        if (Seeker && !Seeking) // Do nothing when not seeking as the seeker
             return;
-	
-	/// When do we want  to change the brain??
-
-
-        // Convert NN output to action 
+        // Convert NN output to action
         // Lerp is to interpolate between the current velocity (rb.velocity)
         // and the target velocity
         // in a time Time.deltaTime*10
@@ -228,49 +235,199 @@ public class HiderSeekerAgent_RH_Meta : Agent{
         // transform.rotation = Quaternion.Euler(new Vector3(0, new_angle,0));
     }
 
-    public override float[] Heuristic() {
-        if (Input.GetKey(KeyCode.S))
-        {
-            return new float[] { 0, -1f, 0 };
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            return new float[] { 1f, 0, 0 };
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            return new float[] { 0, 1f, 0 };
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            return new float[] { -1f, 0, 0 };
-        }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            return new float[] { 0, 0, -0.1f };
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            return new float[] { 0, 0, 0.1f };
-        }
-        return new float[] { 0, 0, 0 };
-        // return VectorActs.ToArray();
-    }
 
-    public static Vector3 PolarToCartesian(float radius, float angle) {
-        var x = radius * Mathf.Cos(angle * Mathf.PI / 180f);
-        var z = radius * Mathf.Sin(angle * Mathf.PI / 180f);
-        return new Vector3(x, 0f, z);
-    }
 
-    private void OnCollisionEnter(Collision collision) { // Rewards for being caught
-        if (Seeking&&collision.transform.CompareTag("agent")) {
-            if (!Seeker) AddReward(-10f);
-            else AddReward(10f);
-            Done();
+
+
+        void MetaPolicy_UpdateBrain(int config)
+        {	Debug.Log(timeLeft);
+    	Debug.Log(config);
+            if (config == 0)
+            {
+                GiveModel("Brain_TR", Brain_TR);
+    	    //Debug.Log("Choose TR" + behaviorName + config);
+            }
+            else if (config == 1)
+            {
+                GiveModel("Brain_BL", Brain_BL);
+    	    //Debug.Log("Choose BL" + behaviorName + config);
+            }
+            else
+            {
+    	         Debug.Log("Something's wrong with brain selection..");
+            }
         }
 
 
+
+
+public void writeIfNewRoom(char startRoom, char crntRoom){
+  if(startRoom!=crntRoom){
+    char[] chars = {startRoom, crntRoom};
+    string sss = new string(chars);
+    WriteDemonstration(sss);
+    Debug.Log("Writing Sub Demonstration out.");
+  }
+  else{
+    Debug.Log("Something wrong with writing sub demonstration..");
+  }
+}
+
+public bool inNewRoom(char startRoom){
+  char testRoom = roomID();
+  bool inNewRoomBool = false;
+  bool sameRoom = startRoom==testRoom;
+  bool hallRoom = 'H'==testRoom;
+  bool newRoom  = sameRoom==false && hallRoom==false;
+    if(newRoom)
+      {inNewRoomBool=true;}
+  return inNewRoomBool;
+}
+
+public char roomID(){
+  // Returns the ID of the room
+  // Top-left = A, Top-right = B, Bottom-Right =C, Bottom-Left=D.
+  char room_id;
+  if(inRoomA())
+    { room_id='A'; }
+  else if(inRoomB())
+    { room_id='B'; }
+  else if(inRoomC())
+    { room_id='C'; }
+  else if(inRoomD())
+    { room_id='D'; }
+  else
+    {room_id='H';}
+  return room_id;
+}
+
+public bool inRoomA(){
+  bool InRoomA;
+  bool xrang = transform.position.x < Area_1_x;
+  bool zrang = transform.position.z > Area_1_z;
+  if( xrang && zrang )
+    {InRoomA=true;}
+  else
+    {InRoomA=false;}
+  return InRoomA;
+}
+
+public bool inRoomB(){
+  bool InRoomA;
+  bool xrang = transform.position.x > -Area_1_x;
+  bool zrang = transform.position.z >  Area_1_z;
+  if( xrang && zrang )
+    {InRoomA=true;}
+  else
+    {InRoomA=false;}
+  return InRoomA;
+}
+
+public bool inRoomC(){
+  bool InRoomA;
+  bool xrang = transform.position.x > -Area_1_x;
+  bool zrang = transform.position.z <  Area_1_z;
+  if( xrang && zrang )
+    {InRoomA=true;}
+  else
+    {InRoomA=false;}
+  return InRoomA;
+}
+
+public bool inRoomD(){
+  bool InRoomA;
+  bool xrang = transform.position.x < -Area_1_x;
+  bool zrang = transform.position.z <  Area_1_z;
+  if( xrang && zrang )
+    {InRoomA=true;}
+  else
+    {InRoomA=false;}
+  return InRoomA;
+}
+
+
+
+        public void WriteDemonstration(string demo_name)
+        {
+          const string k_DemoDirecory = "Assets/Demonstrations/";
+          const string k_ExtensionType = ".demo";
+          string k_DemoName = demo_name; //"TestStill" + Time.fixedTime;
+          var demoStore = new DemonstrationStore(null);
+
+            //Assert.IsFalse(fileSystem.Directory.Exists(k_DemoDirecory));
+
+             var brainParameters = new BrainParameters
+             {
+                 vectorObservationSize = 3,
+                 numStackedVectorObservations = 2,
+                 vectorActionDescriptions = new[] { "TestActionA", "TestActionB" },
+                 vectorActionSize = new[] { 2, 2 },
+                 vectorActionSpaceType = SpaceType.Discrete
+             };
+
+            demoStore.Initialize(k_DemoName, brainParameters, "TestBrain");
+
+            //Assert.IsTrue(fileSystem.Directory.Exists(k_DemoDirecory));
+            //Assert.IsTrue(fileSystem.FileExists(k_DemoDirecory + k_DemoName + k_ExtensionType));
+
+            var agentInfo = new AgentInfo
+            {
+                reward = 1f,
+                actionMasks = new[] { false, true },
+                done = true,
+                id = 5,
+                maxStepReached = true,
+                storedVectorActions = new[] { 0f, 1f },
+            };
+
+            demoStore.Record(agentInfo);//new mlagents release records the agentInfo and brainParams seperately..
+            demoStore.WriteBrainParameters(behaviorName, brainParameters); // I overwrote the permissions...
+            demoStore.Close();
+        }
+
+
+
+            public override float[] Heuristic() {
+                if (Input.GetKey(KeyCode.S))
+                {
+                    return new float[] { 0, -1f, 0 };
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    return new float[] { 1f, 0, 0 };
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    return new float[] { 0, 1f, 0 };
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    return new float[] { -1f, 0, 0 };
+                }
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    return new float[] { 0, 0, -0.1f };
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+                    return new float[] { 0, 0, 0.1f };
+                }
+                return new float[] { 0, 0, 0 };
+                // return VectorActs.ToArray();
+            }
+
+            public static Vector3 PolarToCartesian(float radius, float angle) {
+                var x = radius * Mathf.Cos(angle * Mathf.PI / 180f);
+                var z = radius * Mathf.Sin(angle * Mathf.PI / 180f);
+                return new Vector3(x, 0f, z);
+            }
+
+            private void OnCollisionEnter(Collision collision) { // Rewards for being caught
+                if (Seeking&&collision.transform.CompareTag("agent")) {
+                    if (!Seeker) AddReward(-10f);
+                    else AddReward(10f);
+                    Done();
+                }
 
 
     }

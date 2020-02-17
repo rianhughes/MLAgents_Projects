@@ -487,12 +487,12 @@ PrefabInstance:
         type: 3}
       propertyPath: largeGoal
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1783603363}
     - target: {fileID: 114827551040495112, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
         type: 3}
       propertyPath: smallGoal
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1783603362}
     - target: {fileID: 114827551040495112, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
         type: 3}
       propertyPath: m_Enabled
@@ -530,8 +530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  record: 0
-  demonstrationName: FFF
+  record: 1
+  demonstrationName: IOI
 --- !u!114 &1783603366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,4 +567,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dummy: 99
   record: 1
-  demonstrationName: SOB!
+  demonstrationName: LLL

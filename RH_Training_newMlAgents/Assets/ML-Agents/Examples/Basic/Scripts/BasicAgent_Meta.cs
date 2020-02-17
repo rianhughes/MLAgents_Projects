@@ -104,7 +104,9 @@ public class BasicAgent_Meta : Agent
     public void FixedUpdate()
     {
         WaitTimeInference();
-        if(cnt<5){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed!");}
+        Debug.Log(cnt);
+        if(cnt<5){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed! 1 !");}
+        if(cnt>4 && cnt <10 ){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed! 2 !");}
 
     }
 
@@ -131,25 +133,25 @@ public class BasicAgent_Meta : Agent
       //       storedVectorActions = new[] { 0f },
       //     };
 
-      Debug.Log("#####");
-      Debug.Log(cnt);
-      Debug.Log("#####");
-      string demonstrationName = "ASD";
+      string demonstrationName = "ASD_A";
+      string demonstrationName2 = "ASD_B";
 
         if(cnt==1){
-          Debug.Log("Initialization of Demo!!!");
-          Debug.Log(Info);
           var behaviorParams = GetComponent<BehaviorParameters>();
           demonstrationName = demoStore.SanitizeName(demonstrationName, 16);
           demoStore.Initialize(demonstrationName, behaviorParams.brainParameters, behaviorParams.behaviorName);
         }
 
-        if(cnt>1){
-          Debug.Log("ReCORDING Demo");
+        if(cnt ==5){
+          var behaviorParams = GetComponent<BehaviorParameters>();
+          demonstrationName2 = demoStore.SanitizeName(demonstrationName2, 16);
+          demoStore.Initialize(demonstrationName2, behaviorParams.brainParameters, behaviorParams.behaviorName);
+        }
+
+        if(cnt>1 ){
           demoStore.Record(Info);
           }
-        if(cnt==4){
-          Debug.Log("CLOOOSING Demo");
+        if(cnt==4 || cnt==9){
           demoStore.Close();
           }
 

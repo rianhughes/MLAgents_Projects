@@ -160,7 +160,7 @@ def load_demonstration(
                     #print(brain_param_proto.ParseFromString(data[pos : pos + next_pos]))
                     #print("##################")
                     brain_param_proto.ParseFromString(data[pos : pos + next_pos])
-                    print(data[pos : pos + next_pos])
+                    #print(data[pos : pos + next_pos])
                     pos += next_pos
                 if obs_decoded > 1:
                     agent_info_action = AgentInfoActionPairProto()
@@ -186,7 +186,7 @@ def load_demonstration(
     return group_spec, info_action_pairs, total_expected
 
 print("#########################################")
-group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/QQQ_10.demo")
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/IOI.demo")
 print(group_spec)
 print("#######")
 print( info_action_pairs)
@@ -196,7 +196,7 @@ print("#######")
 
 
 print("#########################################")
-group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ASD.demo")
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ASDB.demo")
 print(group_spec)
 print("#######")
 print( info_action_pairs)

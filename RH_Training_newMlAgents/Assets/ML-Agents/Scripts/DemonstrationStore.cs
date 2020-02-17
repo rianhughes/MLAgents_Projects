@@ -83,6 +83,7 @@ namespace MLAgents
         /// </summary>
         void WriteBrainParameters(string brainName, BrainParameters brainParameters)
         {
+          //Debug.Log({"Write BRAIN",Time.fixedTime});
             // Writes BrainParameters to file.
             m_Writer.Seek(MetaDataBytes + 1, 0);
             var brainProto = brainParameters.ToProto(brainName, false);
@@ -94,6 +95,8 @@ namespace MLAgents
         /// </summary>
         public void Record(AgentInfo info)
         {
+        //  Debug.Log({"RECORD";,Time.fixedTime;});
+
             // Increment meta-data counters.
             m_MetaData.numberExperiences++;
             m_CumulativeReward += info.reward;
@@ -112,6 +115,7 @@ namespace MLAgents
         /// </summary>
         public void Close()
         {
+          //Debug.Log(("CLOSE" Time.fixedTime));
             EndEpisode();
             m_MetaData.meanReward = m_CumulativeReward / m_MetaData.numberEpisodes;
             WriteMetadata();
@@ -123,6 +127,7 @@ namespace MLAgents
         /// </summary>
         void EndEpisode()
         {
+          //Debug.Log({"End EPISODE";,Time.fixedTime;});
             m_MetaData.numberEpisodes += 1;
         }
 
@@ -131,6 +136,7 @@ namespace MLAgents
         /// </summary>
         void WriteMetadata()
         {
+          //Debug.Log({"METADATA",Time.fixedTime});
             var metaProto = m_MetaData.ToProto();
             var metaProtoBytes = metaProto.ToByteArray();
             m_Writer.Write(metaProtoBytes, 0, metaProtoBytes.Length);

@@ -23,12 +23,14 @@ public class BasicAgent_Meta : Agent
     //[FormerlySerializedAs("m_Sensors")]
     public List<ISensor> sensors;
     DemonstrationRecorderOverRide MM_Recorder;
+    DemonstrationStoreOverRide demoStore2 = new DemonstrationStoreOverRide(null);
 
     //AgentInfo m_Info;
 
     public override void InitializeAgent()
     {
       cnt=1;
+
       m_Academy = FindObjectOfType(typeof(BasicAcademy)) as BasicAcademy;
       MM_Recorder = GetComponent<DemonstrationRecorderOverRide>();
     }
@@ -102,119 +104,57 @@ public class BasicAgent_Meta : Agent
     public void FixedUpdate()
     {
         WaitTimeInference();
-        // The .demo file is of the following format:
-        // (meta?), [agent_info {...} action_info {...} , agent_info {...} action_info{..}, numberExperiences ]
-        if(cnt<10){TestStoreInitalize_2();Debug.Log("TestSotreInitialsed!");}
-        //if(cnt==2){TestAgentWrite_2();Debug.Log("TestSotreWrote!");}
+        if(cnt<5){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed!");}
+
     }
 
-    public void TestStoreInitalize_2()
+    public void TestStoreInitalize_2( DemonstrationStoreOverRide demoStore)
     {
-      var brainParameters = new BrainParameters
-      {
-          vectorObservationSize = 20,
-          numStackedVectorObservations = 2,
-          vectorActionDescriptions = new[] { "TestActionA", "TestACTION" },
-          vectorActionSize = new[] { 1 },
-          vectorActionSpaceType = SpaceType.Discrete
-      };
+      // The .demo file is of the following format:
+      // (meta?), [agent_info {...} action_info {...} , agent_info {...} action_info{..}, numberExperiences ]
 
-      var agentInfo = new AgentInfo
-        {
-            reward = 20f,
-            actionMasks = new[] {  true },
-            done = true,
-            id = 5,
-            maxStepReached = true,
-           storedVectorActions = new[] { 0f },
-          };
+      // var brainParameters = new BrainParameters
+      // {
+      //     vectorObservationSize = 20,
+      //     numStackedVectorObservations = 2,
+      //     vectorActionDescriptions = new[] { "TestActionA", "TestACTION" },
+      //     vectorActionSize = new[] { 1 },
+      //     vectorActionSpaceType = SpaceType.Discrete
+      // };
+      // var agentInfo = new AgentInfo
+      //   {
+      //       reward = 20f,
+      //       actionMasks = new[] {  true },
+      //       done = true,
+      //       id = 5,
+      //       maxStepReached = true,
+      //       storedVectorActions = new[] { 0f },
+      //     };
 
       Debug.Log("#####");
       Debug.Log(cnt);
       Debug.Log("#####");
-      const string k_ExtensionType = ".demo";
-      string brainName="dummy";
-      string demonstrationName = "ZXC";// + Time.fixedTime;
+      string demonstrationName = "ASD";
 
-
-      var demoStore = new DemonstrationStoreOverRide(null);
-
-      //MM_Recorder = GetComponent<DemonstrationRecorderOverRide>();
-
-        if(true){
+        if(cnt==1){
           Debug.Log("Initialization of Demo!!!");
+          Debug.Log(Info);
           var behaviorParams = GetComponent<BehaviorParameters>();
           demonstrationName = demoStore.SanitizeName(demonstrationName, 16);
           demoStore.Initialize(demonstrationName, behaviorParams.brainParameters, behaviorParams.behaviorName);
         }
 
-        //demoStore.WriteBrainParameters(brainName, brainParameters);
-        demoStore.Record(agentInfo);
-        demoStore.Record(agentInfo);
-        //demoStore.WriteBrainParameters(brainName, brainParameters);
-        demoStore.Record(agentInfo);
-        demoStore.Record(agentInfo);
-        demoStore.Record(agentInfo);
-        //demoStore.WriteBrainParameters(brainName, brainParameters);
-
-        Debug.Log("CLOOOSING Demo");
-        demoStore.Close();
+        if(cnt>1){
+          Debug.Log("ReCORDING Demo");
+          demoStore.Record(Info);
+          }
+        if(cnt==4){
+          Debug.Log("CLOOOSING Demo");
+          demoStore.Close();
+          }
 
         cnt+=1;
     }
-
-    // public void TestAgentWrite_2()
-    // {
-    //     var agentGo1 = new GameObject("BasicAgent2");
-    //     var bpA = agentGo1.AddComponent<BehaviorParameters>();
-    //     bpA.brainParameters.vectorObservationSize = 3;
-    //     bpA.brainParameters.numStackedVectorObservations = 1;
-    //     bpA.brainParameters.vectorActionDescriptions = new[] { "TestActionA", "TestActionB" };
-    //     bpA.brainParameters.vectorActionSize = new[] { 2, 2 };
-    //     bpA.brainParameters.vectorActionSpaceType = SpaceType.Discrete;
-    //
-    //     agentGo1.AddComponent<ObservationAgent>();
-    //     var agent1 = agentGo1.GetComponent<ObservationAgent>();
-    //
-    //     agentGo1.AddComponent<DemonstrationRecorderOverRide>();
-    //     var demoRecorder = agentGo1.GetComponent<DemonstrationRecorderOverRide>();
-    //     var fileSystem = new MockFileSystem();
-    //     demoRecorder.demonstrationName = "TestBrain__RH";
-    //     demoRecorder.record = true;
-    //     demoRecorder.InitializeDemoStore(fileSystem);
-    //
-    //     var acaGo = new GameObject("TestAcademy");
-    //     acaGo.AddComponent<TestAcademy>();
-    //     var aca = acaGo.GetComponent<TestAcademy>();
-    //
-    //     agentEnableMethod?.Invoke(agent1, new object[] { });
-    //     academyInitializeMethod?.Invoke(aca, new object[] { });
-    //
-    //     // Step the agent
-    //     agent1.RequestDecision();
-    //     agentSendInfo?.Invoke(agent1, new object[] { });
-    //
-    //     demoRecorder.Close();
-    //
-    //     // Read back the demo file and make sure observations were written
-    //     var reader = fileSystem.File.OpenRead("Assets/Demonstrations/TestBrain.demo");
-    //     reader.Seek(DemonstrationStore.MetaDataBytes + 1, 0);
-    //     BrainParametersProto.Parser.ParseDelimitedFrom(reader);
-    //
-    //     var agentInfoProto = AgentInfoActionPairProto.Parser.ParseDelimitedFrom(reader).AgentInfo;
-    //     var obs = agentInfoProto.Observations[2]; // skip dummy sensors
-    //     {
-    //         var vecObs = obs.FloatData.Data;
-    //         Assert.AreEqual(bpA.brainParameters.vectorObservationSize, vecObs.Count);
-    //         for (var i = 0; i < vecObs.Count; i++)
-    //         {
-    //             Assert.AreEqual((float)i + 1, vecObs[i]);
-    //         }
-    //     }
-    //
-    //
-    // }
-
 
     void WaitTimeInference()
     {

@@ -196,7 +196,7 @@ print("#######")
 
 
 print("#########################################")
-group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ZXC.demo")
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ASD.demo")
 print(group_spec)
 print("#######")
 print( info_action_pairs)

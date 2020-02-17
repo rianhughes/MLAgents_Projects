@@ -21,7 +21,7 @@ public class HiderSeekerAgent_Meta : Agent{
     string behaviorName;
     float distanceToSeenEnemey = 0.5f;
     float NumVectObs = 34; // Number of Vector Observations
-    char startRoom;
+    string startRoom;
     float Area_1_x 	=  -17;
     float Area_1_z 	=  8;
     float Area_length 	=  16;
@@ -36,13 +36,24 @@ public class HiderSeekerAgent_Meta : Agent{
     public NNModel Brain_BL;
     DemonstrationStore demoStore2;
     int cnt;
+    bool closeDemoBool;
+    string stringDummy;
+    bool demoInitBool;
 
     // Start is called before the first frame update
     void Start(){
+
       cnt = 1;
+      stringDummy = "R";
+      demoInitBool=true;
+      closeDemoBool=false;
         demoStore2 = new DemonstrationStore(null);
         recording = GetComponent<DemonstrationRecorder>().record;
         startRoom = roomID();
+
+        if(startRoom==startRoom){Debug.Log("startRoom=startRoom");}
+        Debug.Log("Start ROOOM:");
+        Debug.Log(startRoom);
 
         behaviorName = GetComponent<BehaviorParameters>().behaviorName;
         m_Academy = FindObjectOfType<HideAndSeekAcademy>();
@@ -181,30 +192,23 @@ public class HiderSeekerAgent_Meta : Agent{
             if (Seeker && seekerLearning) AddReward(-1f);
             else if (hiderLearning) AddReward(1f);
             Done();}
-
-
-
-	// Meta-Policy
-	 //if (timeLeft<-10){
-    //   MetaPolicy_UpdateBrain(0);
-	  //     timeLeft=10f;
-	 // }
-  //  else if (timeLeft<0) {
-//        MetaPolicy_UpdateBrain(Random.Range(0, 2));
-//	  }
-
-
-}
+      }
 
 
 
 
     private void FixedUpdate() {
 
-      Debug.Log("############ ASD ###");
-      Debug.Log(Info);
-      if(cnt<5){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed! 1 !");}
-      if(cnt>4 && cnt <10 ){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed! 2 !");}
+      if(startRoom!=roomID()){
+        if(startRoom==startRoom){Debug.Log("startRoom=startRoom");}
+        Debug.Log("In New ROOOM!!" + Time.fixedTime);
+        Debug.Log(startRoom  + Time.fixedTime);
+        Debug.Log(roomID()   + Time.fixedTime);
+        closeDemoBool=true;
+        startRoom=roomID();
+      }
+
+      TestStoreInitalize_2(demoStore2, startRoom + stringDummy);
 
 
      timeLeft -= Time.deltaTime;
@@ -226,30 +230,26 @@ public class HiderSeekerAgent_Meta : Agent{
 
 
 
-    public void TestStoreInitalize_2(DemonstrationStore demoStore)
+    public void TestStoreInitalize_2(DemonstrationStore demoStore, string demonstrationName)
     {
-      string demonstrationName = "QQHSA";
-      string demonstrationName2 = "QQHSB";
 
-        if(cnt==1){
+        if(demoInitBool == true){
+          Debug.Log("Initialising the demo recording");
           var behaviorParams = GetComponent<BehaviorParameters>();
           demonstrationName = DemonstrationRecorder.SanitizeName(demonstrationName, 16);
           demoStore.Initialize(demonstrationName, behaviorParams.brainParameters, behaviorParams.behaviorName);
-        }
-        if(cnt ==5){
-          var behaviorParams = GetComponent<BehaviorParameters>();
-          demonstrationName2 = DemonstrationRecorder.SanitizeName(demonstrationName2, 16);
-          demoStore.Initialize(demonstrationName2, behaviorParams.brainParameters, behaviorParams.behaviorName);
+          demoInitBool=false;
         }
 
-        if(cnt>1 ){
-          demoStore.Record(Info);
-          }
-        if(cnt==4 || cnt==9){
-          demoStore.Close();
-          }
+      demoStore.Record(Info);
 
-        cnt+=1;
+      if(closeDemoBool==true){
+        Debug.Log("Closing the demo recording");
+        demoStore.Close();
+        closeDemoBool=false;
+        demoInitBool=true;
+        }
+
     }
 
 
@@ -297,31 +297,31 @@ public void writeIfNewRoom(char startRoom, char crntRoom){
   }
 }
 
-public bool inNewRoom(char startRoom){
-  char testRoom = roomID();
+public bool inNewRoom(string startRoom){
+  string testRoom = roomID();
   bool inNewRoomBool = false;
   bool sameRoom = startRoom==testRoom;
-  bool hallRoom = 'H'==testRoom;
+  bool hallRoom = "H"==testRoom;
   bool newRoom  = sameRoom==false && hallRoom==false;
     if(newRoom)
       {inNewRoomBool=true;}
   return inNewRoomBool;
 }
 
-public char roomID(){
+public string roomID(){
   // Returns the ID of the room
   // Top-left = A, Top-right = B, Bottom-Right =C, Bottom-Left=D.
-  char room_id;
+  string room_id;
   if(inRoomA())
-    { room_id='A'; }
+    { room_id="A"; }
   else if(inRoomB())
-    { room_id='B'; }
+    { room_id="B"; }
   else if(inRoomC())
-    { room_id='C'; }
+    { room_id="C"; }
   else if(inRoomD())
-    { room_id='D'; }
+    { room_id="D"; }
   else
-    {room_id='H';}
+    {room_id="H";}
   return room_id;
 }
 

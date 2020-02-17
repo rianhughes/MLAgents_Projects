@@ -37,7 +37,6 @@ public class HiderSeekerAgent_RH_Meta : Agent{
 
     // Start is called before the first frame update
     void Start(){
-
         recording = GetComponent<DemonstrationRecorder>().record;
         startRoom = roomID();
 
@@ -381,7 +380,7 @@ public bool inRoomD(){
             };
 
             demoStore.Record(agentInfo);//new mlagents release records the agentInfo and brainParams seperately..
-            demoStore.WriteBrainParameters(behaviorName, brainParameters); // I overwrote the permissions...
+            //demoStore.WriteBrainParameters(behaviorName, brainParameters); // I overwrote the permissions...
             demoStore.Close();
         }
 

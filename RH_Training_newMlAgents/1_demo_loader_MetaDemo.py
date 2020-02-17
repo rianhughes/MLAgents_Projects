@@ -142,21 +142,34 @@ def load_demonstration(
         with open(_file_path, "rb") as fp:
             with hierarchical_timer("read_file"):
                 data = fp.read()
+            #print(data)
             next_pos, pos, obs_decoded = 0, 0, 0
+            #print(len(data))
             while pos < len(data):
                 next_pos, pos = _DecodeVarint32(data, pos)
+                #print([pos, next_pos, obs_decoded])
                 if obs_decoded == 0:
                     meta_data_proto = DemonstrationMetaProto()
                     meta_data_proto.ParseFromString(data[pos : pos + next_pos])
+                    #print(data[pos : pos + next_pos])
                     total_expected += meta_data_proto.number_steps
                     pos = INITIAL_POS
                 if obs_decoded == 1:
                     brain_param_proto = BrainParametersProto()
+                    #print("##################brain")
+                    #print(brain_param_proto.ParseFromString(data[pos : pos + next_pos]))
+                    #print("##################")
                     brain_param_proto.ParseFromString(data[pos : pos + next_pos])
+                    print(data[pos : pos + next_pos])
                     pos += next_pos
                 if obs_decoded > 1:
                     agent_info_action = AgentInfoActionPairProto()
+                    #print("##################action")
+                    #print(agent_info_action)
+                    #print("##################")
                     agent_info_action.ParseFromString(data[pos : pos + next_pos])
+                    #print("I print here..")
+                    #print(data[pos : pos + next_pos])
                     if group_spec is None:
                         group_spec = agent_group_spec_from_proto(
                             brain_param_proto, agent_info_action.agent_info
@@ -172,10 +185,24 @@ def load_demonstration(
         )
     return group_spec, info_action_pairs, total_expected
 
-#group_spec, info_action_pairs, total_expected = load_demonstration("Demonstrations/testGT.demo")
-#print([group_spec, info_action_pairs, total_expected])
-#print(load_demonstration("Demonstrations/testGT_0.demo"))
 print("#########################################")
-print(load_demonstration("Assets/Demonstrations/DB.demo"))
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/QQQ_10.demo")
+print(group_spec)
+print("#######")
+print( info_action_pairs)
+print("#######")
+print( total_expected)
+print("#######")
+
+
+print("#########################################")
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ZXC.demo")
+print(group_spec)
+print("#######")
+print( info_action_pairs)
+print("#######")
+print( total_expected)
+print("#######")
+
 
 

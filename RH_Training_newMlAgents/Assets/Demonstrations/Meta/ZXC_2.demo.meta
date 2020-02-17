@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 8dd8719803d6ce1fdb7a2561d7f12477
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: ' (MLAgents.Demonstration)'
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 7bd65ce151aaa4a41a45312543c56be1, type: 3}

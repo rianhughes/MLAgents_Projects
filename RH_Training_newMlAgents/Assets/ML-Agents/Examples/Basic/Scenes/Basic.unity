@@ -461,7 +461,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 468c183196f1844f69e125c99dd135a1,
+        type: 3}
     - target: {fileID: 114502619508238574, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
         type: 3}
       propertyPath: m_BehaviorType
@@ -480,18 +481,23 @@ PrefabInstance:
     - target: {fileID: 114827551040495112, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
         type: 3}
       propertyPath: timeBetweenDecisionsAtInference
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114827551040495112, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
         type: 3}
       propertyPath: largeGoal
       value: 
-      objectReference: {fileID: 1783603363}
+      objectReference: {fileID: 0}
     - target: {fileID: 114827551040495112, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
         type: 3}
       propertyPath: smallGoal
       value: 
-      objectReference: {fileID: 1783603362}
+      objectReference: {fileID: 0}
+    - target: {fileID: 114827551040495112, guid: c5eb289873aca4f5a8cc59c7464ab7c1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5eb289873aca4f5a8cc59c7464ab7c1, type: 3}
 --- !u!1 &1783603362 stripped
@@ -519,10 +525,46 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783603364}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  record: 0
+  demonstrationName: FFF
+--- !u!114 &1783603366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783603364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c540a36d642286ece86cad865e53fe72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  timeBetweenDecisionsAtInference: 1
+  largeGoal: {fileID: 1783603363}
+  smallGoal: {fileID: 1783603362}
+  record: 0
+--- !u!114 &1783603367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783603364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 599d272266e6ebc5b90524157c16e57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Dummy: 99
   record: 1
-  demonstrationName: Baic
+  demonstrationName: SOB!

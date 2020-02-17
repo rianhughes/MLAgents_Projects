@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"count":1,"gauges":{},"self":0.987742,"total":1.0023039999999999,"children":{"AgentResetIfDone":{"count":18,"self":0.00084899999999999993,"total":0.00084899999999999993,"children":null},"AgentSendState":{"count":18,"self":0.011972,"total":0.012544,"children":{"CollectObservations":{"count":18,"self":0.000572,"total":0.000572,"children":null}}}}}
+=======
+{"count":1,"gauges":{},"self":1.027944,"total":1.036206,"children":{"AgentResetIfDone":{"count":29,"self":0.001143,"total":0.001143,"children":null},"AgentSendState":{"count":29,"self":0.002075,"total":0.003022,"children":{"CollectObservations":{"count":29,"self":0.00094699999999999993,"total":0.00094699999999999993,"children":null}}},"DecideAction":{"count":29,"self":0.001132,"total":0.001132,"children":null},"AcademyStep":{"count":29,"self":0.000628,"total":0.000628,"children":null},"AgentAct":{"count":29,"self":0.001041,"total":0.001041,"children":null}}}
+>>>>>>> parent of 09f56c9... Tidying up the BasicAgnet_Meta.cs script.

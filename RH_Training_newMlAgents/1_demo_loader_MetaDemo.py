@@ -196,7 +196,11 @@ print("#######")
 
 
 print("#########################################")
+<<<<<<< HEAD
 group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ASDB.demo")
+=======
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ZXC.demo")
+>>>>>>> parent of 09f56c9... Tidying up the BasicAgnet_Meta.cs script.
 print(group_spec)
 print("#######")
 print( info_action_pairs)

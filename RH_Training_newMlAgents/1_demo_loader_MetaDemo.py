@@ -186,7 +186,7 @@ def load_demonstration(
     return group_spec, info_action_pairs, total_expected
 
 print("#########################################")
-group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/QQQ_10.demo")
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/HSSI.demo")
 print(group_spec)
 print("#######")
 print( info_action_pairs)
@@ -197,7 +197,7 @@ print("#######")
 
 print("#########################################")
 
-group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/Meta/ASDB.demo")
+group_spec, info_action_pairs, total_expected = load_demonstration("Assets/Demonstrations/QQHSA.demo")
 print(group_spec)
 print("#######")
 print( info_action_pairs)

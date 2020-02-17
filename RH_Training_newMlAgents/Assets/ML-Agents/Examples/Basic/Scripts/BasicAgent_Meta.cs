@@ -23,14 +23,14 @@ public class BasicAgent_Meta : Agent
     //[FormerlySerializedAs("m_Sensors")]
     //public List<ISensor> sensors;
     DemonstrationRecorderOverRide MM_Recorder;
-    DemonstrationStoreOverRide demoStore2;
+    DemonstrationStore demoStore2;
 
     public override void InitializeAgent()
     {
       cnt=1;
       m_Academy = FindObjectOfType(typeof(BasicAcademy)) as BasicAcademy;
       MM_Recorder = GetComponent<DemonstrationRecorderOverRide>();
-      demoStore2 = new DemonstrationStoreOverRide(null);
+      demoStore2 = new DemonstrationStore(null);
     }
 
     public override void CollectObservations()
@@ -102,13 +102,14 @@ public class BasicAgent_Meta : Agent
     public void FixedUpdate()
     {
         WaitTimeInference();
-        Debug.Log(cnt);
+        Debug.Log("############ ASD ###");
+        Debug.Log(Info);
         if(cnt<5){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed! 1 !");}
         if(cnt>4 && cnt <10 ){TestStoreInitalize_2(demoStore2);Debug.Log("TestSotreInitialsed! 2 !");}
 
     }
 
-    public void TestStoreInitalize_2(DemonstrationStoreOverRide demoStore)
+    public void TestStoreInitalize_2(DemonstrationStore demoStore)
     {
       // var brainParameters = new BrainParameters
       // {
@@ -134,12 +135,12 @@ public class BasicAgent_Meta : Agent
 
         if(cnt==1){
           var behaviorParams = GetComponent<BehaviorParameters>();
-          demonstrationName = demoStore.SanitizeName(demonstrationName, 16);
+          demonstrationName = DemonstrationRecorder.SanitizeName(demonstrationName, 16);
           demoStore.Initialize(demonstrationName, behaviorParams.brainParameters, behaviorParams.behaviorName);
         }
         if(cnt ==5){
           var behaviorParams = GetComponent<BehaviorParameters>();
-          demonstrationName2 = demoStore.SanitizeName(demonstrationName2, 16);
+          demonstrationName2 = DemonstrationRecorder.SanitizeName(demonstrationName2, 16);
           demoStore.Initialize(demonstrationName2, behaviorParams.brainParameters, behaviorParams.behaviorName);
         }
 

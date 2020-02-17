@@ -319,8 +319,8 @@ GameObject:
   - component: {fileID: 204121855}
   - component: {fileID: 204121854}
   - component: {fileID: 204121860}
-  - component: {fileID: 204121853}
   - component: {fileID: 204121859}
+  - component: {fileID: 204121861}
   m_Layer: 0
   m_Name: Seeker19
   m_TagString: agent
@@ -343,33 +343,6 @@ Transform:
   m_Father: {fileID: 1397650657}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &204121853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 204121851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bac923463fc5236893f374f55609a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-    resetOnDone: 1
-    onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 1
-  VectorActs:
-  - 0
-  - 0
-  - 0
-  Seeker: 1
-  Enemy: {fileID: 2003549923}
-  Brain_TR: {fileID: 5022602860645237092, guid: 814249fa1ee09e688999efe9bb2764a6,
-    type: 3}
-  Brain_BL: {fileID: 5022602860645237092, guid: 814249fa1ee09e688999efe9bb2764a6,
-    type: 3}
 --- !u!114 &204121854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,11 +452,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 204121851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
+  m_Script: {fileID: 11500000, guid: ef11f4d2d28ffbed584aaa0d17565ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  record: 1
-  demonstrationName: TestMEta
+  agentParameters:
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  VectorActs:
+  - 0
+  - 0
+  - 0
+  Seeker: 1
+  Enemy: {fileID: 2003549929}
+  Brain_TR: {fileID: 5022602860645237092, guid: b106b7c10e713c3d2af2e7591248b49d,
+    type: 3}
+  Brain_BL: {fileID: 5022602860645237092, guid: 814249fa1ee09e688999efe9bb2764a6,
+    type: 3}
 --- !u!114 &204121860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,6 +487,20 @@ MonoBehaviour:
   width: 84
   height: 84
   grayscale: 1
+--- !u!114 &204121861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 204121851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  record: 1
+  demonstrationName: HSSI
 --- !u!1 &266920567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,8 +1242,8 @@ GameObject:
   - component: {fileID: 2003549926}
   - component: {fileID: 2003549925}
   - component: {fileID: 2003549924}
-  - component: {fileID: 2003549929}
   - component: {fileID: 2003549930}
+  - component: {fileID: 2003549929}
   - component: {fileID: 2003549923}
   m_Layer: 0
   m_Name: Hider19
@@ -1277,24 +1277,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2003549921}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0bac923463fc5236893f374f55609a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-    resetOnDone: 1
-    onDemandDecision: 0
-    numberOfActionsBetweenDecisions: 1
-  VectorActs:
-  - 0
-  - 0
-  - 0
-  Seeker: 0
-  Enemy: {fileID: 204121853}
-  Brain_TR: {fileID: 5022602860645237092, guid: de2453e0b8118bd9bbc9b30a83da8266,
-    type: 3}
-  Brain_BL: {fileID: 5022602860645237092, guid: 4da55841650edebe3a7675c26d50dbff,
-    type: 3}
+  record: 1
+  demonstrationName: HSHI
 --- !u!114 &2003549924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1313,7 +1300,7 @@ MonoBehaviour:
     vectorActionSize: 03000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: b106b7c10e713c3d2af2e7591248b49d, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: hiderv
@@ -1402,13 +1389,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003549921}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f710d360a49461cad67ff5e6bcefe1, type: 3}
+  m_Script: {fileID: 11500000, guid: ef11f4d2d28ffbed584aaa0d17565ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  record: 0
-  demonstrationName: Hider19Camera
+  agentParameters:
+    maxStep: 0
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  VectorActs:
+  - 0
+  - 0
+  - 0
+  Seeker: 1
+  Enemy: {fileID: 2003549929}
+  Brain_TR: {fileID: 5022602860645237092, guid: b106b7c10e713c3d2af2e7591248b49d,
+    type: 3}
+  Brain_BL: {fileID: 5022602860645237092, guid: b106b7c10e713c3d2af2e7591248b49d,
+    type: 3}
 --- !u!114 &2003549930
 MonoBehaviour:
   m_ObjectHideFlags: 0

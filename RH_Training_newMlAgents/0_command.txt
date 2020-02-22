@@ -2,4 +2,5 @@ mlagents-learn config/gail_config.yaml --env=Builds/HS_B_default34 --run-id=RH_H
 
 source ~/MLAGENTS/Atmpt2/tutorial-env/bin/activate
 
-mlagents-learn config/gail_config.yaml --env=Builds/HS_meta_TopLeft --run-id=HS_meta_TopLeft_BottomLeft_Gail --train --save-freq=25000
+mlagents-learn config/gail_config.yaml --env=Builds/HS_Navigation --run-id=HS_Nav_NoMem_Test --train --save-freq=200
+

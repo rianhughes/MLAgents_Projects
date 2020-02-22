@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/HideAndSeekOne_B_oneAgent.unity
     guid: 8f3f26918813e7c50bcf347c28c903cb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HideAndSeekOne_B_Visual.unity
     guid: 8212c42ded476ee72a827f23a88dc8f1
+  - enabled: 1
+    path: Assets/Scenes/HaS_ComplexEnv.unity
+    guid: 8195ed84cb0cabefea7eb4ffba66de20
   m_configObjects: {}

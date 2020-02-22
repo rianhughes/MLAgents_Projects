@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/ML-Agents/Examples/Basic/Scenes/Basic.unity
+- path: Assets/Scenes/HaS_ComplexEnv.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

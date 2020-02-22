@@ -7,6 +7,8 @@ ScriptsOnlyBuild:
     - MLAgents.DemonstrationRecorder
     - MLAgents.Sensor.CameraSensorComponent
     - RandomBlocks
+    Barracuda.dll:
+    - Barracuda.NNModel
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -69,6 +71,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10408}
     - Class: 114
       Script: {instanceID: 10562}
+    - Class: 114
+      Script: {instanceID: 11382}
     - Class: 114
       Script: {instanceID: 11444}
     - Class: 114
@@ -236,18 +240,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: MLAgents
     className: DemonstrationRecorderOverRide
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements
-    className: CallbackExecutor
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: UnityEngine.Advertisements.dll
-    namespaceName: UnityEngine.Advertisements.Editor
-    className: Placeholder
   - hash:
       serializedVersion: 2
       Hash: ddfbebd1a5f742b6924e650b7e593d8b

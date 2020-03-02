@@ -60,7 +60,7 @@ public class HaS_Navigation : Agent{
             VectorActs[i] = Mathf.Clamp(vectorAction[i],-1.0f,1.0f);
         }
 
-        if (GetStepCount()>2000) { // Stop game after 1500 steps
+        if (GetStepCount()>4000) { // Stop game after 1500 steps
             Done();}
 
 

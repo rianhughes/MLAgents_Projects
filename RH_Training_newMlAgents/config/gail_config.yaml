@@ -21,68 +21,32 @@ default:
             strength: 1.0
             gamma: 0.99
 
-seekerv_:
-    normalize: true
-    num_epoch: 3
-    time_horizon: 1000
-    batch_size: 2024
-    buffer_size: 20240
-    max_steps: 1e6
-    summary_freq: 3000
-    num_layers: 3
-    hidden_units: 512
-    behavioral_cloning:
-        demo_path: Assets/Demonstrations/Seeker19Camera.demo
-        strength: 0.5
-        steps: 5000
-    reward_signals:
-        gail:
-            strength: 1.0
-            gamma: 0.99
-            encoding_size: 128
-            demo_path: Assets/Demonstrations/Seeker19Camera.demo
-
 seeker_nav:
     trainer: ppo
-    batch_size: 1024
-    beta: 5.0e-3
-    buffer_size: 10240
-    epsilon: 0.2
-    hidden_units: 128
-    lambd: 0.95
-    learning_rate: 3.0e-4
-    max_steps: 5.0e4
-    memory_size: 256
-    normalize: false
-    num_epoch: 3
-    num_layers: 2
-    time_horizon: 64
-    sequence_length: 64
-    summary_freq: 1000
-    use_recurrent: false
-    summary_freq: 2000
-    time_horizon: 128
-    batch_size: 128
-    buffer_size: 2048
-    hidden_units: 512
-    num_layers: 2
+    time_horizon: 500
+    batch_size: 1000
+    buffer_size: 10000
+    hidden_units: 256
+    num_layers: 1
     beta: 1.0e-2
-    max_steps: 5.0e5
+    max_steps: 1.0e5
     num_epoch: 5
+    learning_rate: 1.0e-3 
+    epsilon: 0.2
+    use_recurrent: flase
+    sequence_length: 10
+    memory_size: 50
     behavioral_cloning:
-        demo_path: ./Demonstration_to_push/HSNav2.demo
+        demo_path: ./Demonstration_to_push/Nav1D.demo
         strength: 0.5
         steps: 10000
     reward_signals:
-        curiosity:
-            strength: 0.02
-            gamma: 0.99
-            encoding_size: 256
         gail:
             strength: 1.0
-            gamma: 0.99
+            gamma: 0.9
             encoding_size: 128
-            demo_path: ./Demonstration_to_push/HSNav2.demo
+            use_vail: true
+            demo_path: ./Demonstration_to_push/Nav1D.demo
 
 
 hiderv:
